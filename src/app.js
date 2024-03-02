@@ -8,6 +8,9 @@ const FileStore = require("session-file-store");
 const fileStore = FileStore(session);
 const MongoStore = require("connect-mongo");
 
+const passport = require("passport");
+const initializePassport = require("./config/passport.config.js");
+
 const socket = require("socket.io");
 const PUERTO = 8080;
 require("./database.js");
@@ -36,6 +39,10 @@ app.use(
     }),
   })
 );
+
+initializePassport();
+app.use(passport.initialize());
+app.use(passport.session());
 
 //Handlebars
 const Handlebars = require("handlebars");
