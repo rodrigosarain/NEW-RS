@@ -13,7 +13,7 @@ class ProductManager {
   }) {
     try {
       if (!title || !description || !price || !code || !stock || !category) {
-        console.log("Todos los campos son obligatorios");
+        console.log("All fields are required");
         return;
       }
 
@@ -21,7 +21,7 @@ class ProductManager {
       const existeProducto = await ProductModel.findOne({ code: code });
 
       if (existeProducto) {
-        console.log("El código debe ser único, malditooo!!!");
+        console.log("Code must be unique");
         return;
       }
 
@@ -62,10 +62,10 @@ class ProductManager {
         return null;
       }
 
-      console.log("Producto encontrado!! Claro que siiiiii");
+      console.log("Product find");
       return producto;
     } catch (error) {
-      console.log("Error al traer un producto por id");
+      console.log("error ");
     }
   }
 
@@ -77,14 +77,14 @@ class ProductManager {
       );
 
       if (!updateado) {
-        console.log("No se encuentra che el producto");
+        console.log("Product Not found");
         return null;
       }
 
-      console.log("Producto actualizado con exito, como todo en mi vidaa!");
+      console.log("Product Updated");
       return updateado;
     } catch (error) {
-      console.log("Error al actualizar el producto", error);
+      console.log("Failed up to update", error);
     }
   }
 
@@ -93,13 +93,13 @@ class ProductManager {
       const deleteado = await ProductModel.findByIdAndDelete(id);
 
       if (!deleteado) {
-        console.log("No se encuentraaaa, busca bien!");
+        console.log("Not found");
         return null;
       }
 
-      console.log("Producto eliminado correctamente!");
+      console.log("Erase succefull");
     } catch (error) {
-      console.log("Error al eliminar el producto", error);
+      console.log("Delete failed", error);
       throw error;
     }
   }

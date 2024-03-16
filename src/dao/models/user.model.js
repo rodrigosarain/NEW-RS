@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Cart = require("./cart.model.js");
 
 const userSchema = mongoose.Schema({
   first_name: {
@@ -26,6 +27,16 @@ const userSchema = mongoose.Schema({
   age: {
     type: Number,
     // required: true,
+  },
+
+  cartId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Cart",
+  },
+
+  role: {
+    type: String,
+    default: "user",
   },
 });
 
